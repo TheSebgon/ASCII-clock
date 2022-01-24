@@ -46,7 +46,7 @@ void Time::update_Time()		//catch system time
 }
 void Time::print_Time()		//print time as ASCII art
 {
-	using namespace ASCII_art;
+	using  ASCII_art::ASCII;
 
 	for (int i = 0; i < 5; i++)
 	{
@@ -63,4 +63,46 @@ void Time::print_Time()		//print time as ASCII art
 		std::cout << ASCII[seconds / 10][i] << "\t";	//seconds
 		std::cout << ASCII[seconds % 10][i] << "\n";
 	}
+}
+
+
+///////////////////////////////////////////////////
+
+void replace_sign(std::string& str, char c2)
+{
+	unsigned int i = 0;
+	while (i < str.length())
+	{
+		if (str[i] != ' ')     str[i] = c2;
+		i++;
+	}
+}
+
+void Change_ASCII()									
+{
+	using ASCII_art::ASCII;
+
+	std::cout << "Choose any ASCII sign: ";
+	char y;
+	std::cin >> y;
+
+	for (int i = 0; i < 11; i++)
+	{
+		for (int j = 0; j < 5; j++)
+			replace_sign(ASCII[i][j], y);
+	}
+}
+
+void show_clock()
+{
+	system("cls");
+	Time x;
+	for (;;)
+	{
+		x.update_Time();
+		x.print_Time();
+		Sleep(1000);
+		system("cls");
+	}
+	
 }

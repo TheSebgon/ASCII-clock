@@ -18,3 +18,7 @@ public:
 	void update_Time();							//catch system time
 	void print_Time();							//print time as ASCII art
 };
+
+void replace_sign(std::string& str, char c2);
+void Change_ASCII();
+void show_clock();
