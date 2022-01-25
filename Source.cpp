@@ -18,6 +18,9 @@ namespace ASCII_art		//ASCII art digits + colon
 	};
 };
 
+//class
+/// ///////////////////////////////////////////////
+
 Time::Time(int h, int m, int s)
 {
 	hours = h;
@@ -65,7 +68,7 @@ void Time::print_Time()		//print time as ASCII art
 	}
 }
 
-
+//ASCII manip
 ///////////////////////////////////////////////////
 
 void replace_sign(std::string& str, char c2)
@@ -81,8 +84,7 @@ void replace_sign(std::string& str, char c2)
 void change_ASCII()									
 {
 	using ASCII_art::ASCII;
-	display_mode();
-	Sleep(1000);
+	Sleep(500);
 	std::cout << "Choose any ASCII sign: ";
 	char y;
 	std::cin >> y;
@@ -95,6 +97,20 @@ void change_ASCII()
 	system("cls");
 }
 
+void display_mode(int sleep)			//displaying current mode
+{
+	using ASCII_art::ASCII;
+	std::cout << "\t Current display mode:\n";
+	for (int i = 0; i < 5; i++)
+	{
+		std::cout <<"\t\t"<< ASCII[0][i] << "\n";
+		Sleep(sleep);
+	}
+	std::cout << std::endl;
+}
+
+//Real time clock
+//////////////////////////
 void show_clock()
 {
 	system("cls");
@@ -108,26 +124,17 @@ void show_clock()
 	}
 }
 
-void display_mode()
-{
-	using ASCII_art::ASCII;
-	std::cout << "\t Current display mode:\n";
-	for (int i = 0; i < 5; i++)
-	{
-		std::cout <<"\t\t"<< ASCII[0][i] << "\n";
-	}
-	std::cout << std::endl;
-}
-
-
-void show_menu()
+//menu
+/////////////////////////////////////////////////////////////
+void show_main_menu()
 {
 	while (1)
 	{
-		Sleep(500);
-		std::cout <<"Options:\n"
+		display_mode(0);
+		std::cout << "Options:\n"
 			<< "a) Set sign used for displaying	\t"
-			<< "b) Real time clock\n";
+			<< "b) Real time clock\n"
+			<< "q) Exit program\t\n";
 
 		char option;
 		std::cin >> option;
@@ -144,18 +151,60 @@ void show_menu()
 		switch (option)					//Selected option 
 		{
 		case 'a':						//ASCII sign choose
-			system("cls"); 
-			change_ASCII();
-			std::cout << "\t Display ASCII changed:\n";
-			display_mode();
-			Sleep(500); break;
+			system("cls");
+			show_ascii_menu(); break;
 		case 'b':						//Real time clock
 			system("cls"); 
 			show_clock();  break;
+		case 'q':
+			exit(0);
 		default:						//Wrong option
 			system("cls");
 			std::cout << "Invalid option, please choose correct one.\n\n"; 
 			break;
+		}
+	}
+}
+
+void show_ascii_menu()
+{
+	while (1)
+	{
+		display_mode(200);
+
+		std::cout << "Options\n"
+			<< "a) Choose ASCII sign\t"
+			<< "b) Set random ASCII sign\n"
+			<< "q) Back to main menu\n";
+		char option;
+		std::cin >> option;
+
+		if (isalpha(option))			//Check if good input and swap to lower letter
+			int tolower(option);
+		else
+		{
+			system("cls");
+			std::cout << "Invalid input, please use letter from options below\n\n";
+			continue;
+		}
+		if (option == 'q')		//back to main menu
+		{
+			system("cls");
+			break;
+		}
+
+		switch (option)
+		{
+		case 'a':					//ask for ASCII sign
+			system("cls");
+			display_mode(0);
+			change_ASCII();
+			continue;
+		case'b':					//Random sign
+		default:
+			system("cls");
+			std::cout << "Invalid option, please choose correct one.\n\n";
+			continue;
 		}
 	}
 }

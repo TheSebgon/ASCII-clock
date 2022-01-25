@@ -2,11 +2,19 @@
 
 int main()
 {	
-	std::cout << "ASCII ART TIME APP\n\n";
-	Sleep(500);
-	display_mode();
+	std::string options = "ASCII ART TIME APP...";
 
-	show_menu();
+	for (int i = 0; i < options.length(); i++)
+	{
+		std::cout << options[i]; Sleep(100);
+	}
+	Sleep(500);
+	system("cls");
+
+
+
+
+	show_main_menu();
 	
 }
 

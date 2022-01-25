@@ -25,5 +25,6 @@ public:
 void replace_sign(std::string& str, char c2);
 void change_ASCII();	//ask for ASCII sign
 void show_clock();		
-void show_menu();		//main menu of app
-void display_mode();	//displaying current mode
+void show_main_menu();		//main menu of app
+void show_ascii_menu();
+void display_mode(int sleep);	//displaying current mode
