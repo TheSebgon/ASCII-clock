@@ -5,6 +5,7 @@
 #include <windows.h>
 #include <cstdlib>
 #include <string>
+#include <ctype.h>
 
 
 class Time
@@ -20,5 +21,7 @@ public:
 };
 
 void replace_sign(std::string& str, char c2);
-void Change_ASCII();
+void change_ASCII();
 void show_clock();
+void show_menu();
+void display_mode();

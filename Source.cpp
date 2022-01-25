@@ -78,10 +78,11 @@ void replace_sign(std::string& str, char c2)
 	}
 }
 
-void Change_ASCII()									
+void change_ASCII()									
 {
 	using ASCII_art::ASCII;
-
+	display_mode();
+	Sleep(1000);
 	std::cout << "Choose any ASCII sign: ";
 	char y;
 	std::cin >> y;
@@ -91,6 +92,7 @@ void Change_ASCII()
 		for (int j = 0; j < 5; j++)
 			replace_sign(ASCII[i][j], y);
 	}
+	system("cls");
 }
 
 void show_clock()
@@ -104,5 +106,56 @@ void show_clock()
 		Sleep(1000);
 		system("cls");
 	}
-	
+}
+
+void display_mode()
+{
+	using ASCII_art::ASCII;
+	std::cout << "\t Current display mode:\n";
+	for (int i = 0; i < 5; i++)
+	{
+		std::cout <<"\t\t"<< ASCII[0][i] << "\n";
+	}
+	std::cout << std::endl;
+}
+
+
+void show_menu()
+{
+	while (1)
+	{
+		Sleep(500);
+		std::cout <<"Options:\n"
+			<< "a) Set sign used for displaying	\t"
+			<< "b) Real time clock\n";
+
+		char option;
+		std::cin >> option;
+
+		if (isalpha(option))			//Check if good input and swap to lower letter
+			int tolower(option);
+		else
+		{
+			system("cls");
+			std::cout << "Invalid input, please use letter from options below\n\n";
+			continue;
+		}
+
+		switch (option)					//Selected option 
+		{
+		case 'a':						//ASCII sign choose
+			system("cls"); 
+			change_ASCII();
+			std::cout << "\t Display ASCII changed:\n";
+			display_mode();
+			Sleep(500); break;
+		case 'b':						//Real time clock
+			system("cls"); 
+			show_clock();  break;
+		default:						//Wrong option
+			system("cls");
+			std::cout << "Invalid option, please choose correct one.\n\n"; 
+			break;
+		}
+	}
 }
