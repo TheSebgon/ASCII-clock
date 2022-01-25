@@ -20,8 +20,10 @@ public:
 	void print_Time();							//print time as ASCII art
 };
 
+
+//functions
 void replace_sign(std::string& str, char c2);
-void change_ASCII();
-void show_clock();
-void show_menu();
-void display_mode();
+void change_ASCII();	//ask for ASCII sign
+void show_clock();		
+void show_menu();		//main menu of app
+void display_mode();	//displaying current mode
