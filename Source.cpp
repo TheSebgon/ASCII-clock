@@ -81,18 +81,16 @@ void replace_sign(std::string& str, char c2)
 	}
 }
 
-void change_ASCII()									
+void change_ASCII(char sign)									
 {
 	using ASCII_art::ASCII;
 	Sleep(500);
-	std::cout << "Choose any ASCII sign: ";
-	char y;
-	std::cin >> y;
+	
 
 	for (int i = 0; i < 11; i++)
 	{
 		for (int j = 0; j < 5; j++)
-			replace_sign(ASCII[i][j], y);
+			replace_sign(ASCII[i][j], sign);
 	}
 	system("cls");
 }
@@ -100,7 +98,7 @@ void change_ASCII()
 void display_mode(int sleep)			//displaying current mode
 {
 	using ASCII_art::ASCII;
-	std::cout << "\t Current display mode:\n";
+	std::cout << "\t Current display mode:\n\n";
 	for (int i = 0; i < 5; i++)
 	{
 		std::cout <<"\t\t"<< ASCII[0][i] << "\n";
@@ -198,9 +196,17 @@ void show_ascii_menu()
 		case 'a':					//ask for ASCII sign
 			system("cls");
 			display_mode(0);
-			change_ASCII();
+			std::cout << "Choose any ASCII sign: ";
+			char sign;
+			std::cin >> sign;
+			change_ASCII(sign);
 			continue;
 		case'b':					//Random sign
+			system("cls");
+			display_mode(0);
+			srand(time(NULL));
+			change_ASCII(rand() % (127 - (-128) + 1) + (-128));		//rand in ASCII range
+			break;
 		default:
 			system("cls");
 			std::cout << "Invalid option, please choose correct one.\n\n";

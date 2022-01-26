@@ -23,7 +23,7 @@ public:
 
 //functions
 void replace_sign(std::string& str, char c2);
-void change_ASCII();	//ask for ASCII sign
+void change_ASCII( char sign);	// ASCII sign change
 void show_clock();		
 void show_main_menu();		//main menu of app
 void show_ascii_menu();
