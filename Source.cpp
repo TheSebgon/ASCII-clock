@@ -14,7 +14,7 @@ namespace ASCII_art		//ASCII art digits + colon
 { "@@@@@@","   @@ ","  @@  "," @@   ","@@    " },	//7
 { " @@@@ ","@@  @@"," @@@@ ","@@  @@"," @@@@ "},
 { " @@@@ ","@@  @@"," @@@@@","    @@"," @@@@ " },	//9
-{ "     ","  @  ","     ","  @  ","     " }			//Colon
+{ "     ","  @  ","     ","  @  ","     " },			//Colon
 	};
 };
 
@@ -28,7 +28,7 @@ Time::Time(int h, int m, int s)
 	seconds = s;
 }
 
-void Time::update_Time()		//catch system time
+void Time::update_time()		//catch system time
 {
 	time_t now = time(NULL);
 	char str[26] = {};
@@ -47,16 +47,16 @@ void Time::update_Time()		//catch system time
 	temp[1] = str[18];
 	seconds = atoi(temp);
 }
-void Time::print_Time(bool s)		//print time as ASCII art
+void Time::print_time(bool s)		//print time as ASCII art
 {
 	using  ASCII_art::ASCII;
 
 	for (int i = 0; i < 5; i++)
 	{
-		std::cout << ASCII[hours / 10][i] << "\t";	//hours
+		std::cout << ASCII[hours / 10][i] << "\t";		//hours
 		std::cout << ASCII[hours % 10][i] << "\t";
 
-		std::cout << ASCII[10][i] << "\t";			//colon
+		std::cout << ASCII[10][i] << "\t";				//colon
 
 		std::cout << ASCII[minutes / 10][i] << "\t";	//minutes
 		std::cout << ASCII[minutes % 10][i] << "\t";
@@ -72,6 +72,13 @@ void Time::print_Time(bool s)		//print time as ASCII art
 			std::cout << std::endl;
 	}
 }
+
+void Time::reset_time(int h, int m)
+{
+	hours = h;
+	minutes = m;
+}
+
 void Time::set_time()
 {
 	int temp;
@@ -92,27 +99,30 @@ Time Time::operator+(const Time& t) const
 	sum.minutes = minutes + t.minutes;
 	sum.hours = hours + t.hours + sum.minutes / 60;
 	sum.minutes %= 60;
+	sum.hours %= 24;
 	return sum;
 }
 
 Time Time::operator-(const Time& t)const
 {
+	int th = t.hours, tm = t.minutes;
 	Time diff;
-	int tot1, tot2;
-	tot1 = t.minutes + 60 * t.hours;
-	tot2 = minutes + 60 * hours;
-	diff.minutes = (tot1 - tot1) % 60;
-	diff.hours = (tot1 - tot2) / 60;
-	return diff;
-}
+	diff.minutes = minutes;
+	diff.hours = hours;
 
-Time Time::operator*(double mult)const
-{
-	Time result;
-	long totalminutes = hours * mult * 60 + minutes * mult;
-	result.hours = totalminutes / 60;
-	result.minutes = totalminutes % 60;
-	return result;
+	if (tm > diff.minutes)
+	{
+		th++;
+		diff.minutes += 60;
+	}
+
+	diff.minutes -= tm;
+
+	while (th > diff.hours)
+		diff.hours += 24;
+	
+	diff.hours -= th;
+	return diff;
 }
 
 //ASCII manip
@@ -157,10 +167,11 @@ void show_clock()		//Real time clock
 {
 	system("cls");
 	Time x;
-	for (;;)
+	for (int i=5;i>=0;i--)
 	{
-		x.update_Time();
-		x.print_Time();
+		x.update_time();
+		x.print_time();
+		std::cout << "\n\nBack to main menu in: " << i<<" seconds";
 		Sleep(1000);
 		system("cls");
 	}

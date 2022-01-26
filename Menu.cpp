@@ -7,15 +7,13 @@ void show_main_menu()
 	Time t1;
 	while (1)
 	{
-		std::cout << "Time is:\n\n";
-		t1.update_Time();
-		t1.print_Time();
+		t1.update_time();
+		t1.print_time();
 
 		std::cout << "\nOptions:\n"
 			<< "a) Set sign used for displaying	\t"
 			<< "b) Real time clock\n"
 			<< "c) Time calculator\t\t\t"
-			//<< "d) Calculations with current time\t"
 			<< "q) Exit program\n";
 
 		char option;
@@ -113,14 +111,16 @@ void show_calc_menu()
 	{
 		std::cout << "TIME: \n\n";
 
-		t1.print_Time(0);
+		t1.print_time(0);
 
 
 		std::cout << "\n\nOptions\n"
 			<< "a) Change base time\n"
-			<< "b) Adding time \n"
-			<< "c) Subtraction time\n"
+			<< "b) Use current time\n"
+			<< "c) Adding time (Time after x time) \n"
+			<< "d) Subtraction time (Which time was x time ago)\n"
 			<< "q) Back to main menu\n";
+
 		char option;
 		std::cin >> option;
 
@@ -147,14 +147,24 @@ void show_calc_menu()
 			break;
 		case 'b':
 			system("cls");
-			std::cout << "\nHow much time do you want to add ?\n";
+			t1.update_time();
+			break;
+		case 'c':
+			system("cls");
+			std::cout << "\nHow much time is to pass ?\n";
 			t2.set_time();
 			system("cls");
 			temp = t1 + t2;
 			t1 = temp;
 			break;
-		case 'c':
-
+		case 'd':
+			system("cls");
+			std::cout << "\nHow much time do you want to subtract ?\n";
+			t2.set_time();
+			system("cls");
+			temp = t1 - t2;	
+			t1 = temp;
+			break;
 		default:
 			system("cls");
 			std::cout << "Invalid option, please choose correct one.\n\n";

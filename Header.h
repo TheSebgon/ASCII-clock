@@ -6,6 +6,7 @@
 #include <cstdlib>
 #include <string>
 #include <ctype.h>
+#include <thread>
 
 
 class Time
@@ -16,15 +17,13 @@ private:
 	int seconds;
 public:
 	Time(int h = 00, int m = 00, int s = 00);
-	void update_Time();							//catch system time
-	void print_Time(bool s = 1);				//print time as ASCII art
+	void update_time();							//catch system time
+	void print_time(bool s = 1);				//print time as ASCII art
 	void set_time();
+	void reset_time(int h = 00, int m = 00);
 	Time operator+(const Time& t) const;
 	Time operator-(const Time& t) const;
-	Time operator*(double mult) const;
-
 };
-
 
 //functions
 //////////////////////////////////////
