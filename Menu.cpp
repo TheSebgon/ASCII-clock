@@ -108,11 +108,16 @@ void show_calc_menu()
 
 	while (1)
 	{
-		std::cout << "Time calculator:\n";
+		std::cout << "Time calculator\n\n"
+			<< "BASE TIME: \n\n";
 
-		std::cout << "\nOptions\n"
-			<< "a) ???\t"
-			<< "b) ???\n"
+		t1.print_Time(0);
+
+
+		std::cout << "\n\nOptions\n"
+			<< "a) Change base time\n"
+			<< "b) Adding time \t"
+			<< "c) Subtraction time\n"
 			<< "q) Back to main menu\n";
 		char option;
 		std::cin >> option;

@@ -17,7 +17,9 @@ private:
 public:
 	Time(int h = 00, int m = 00, int s = 00);
 	void update_Time();							//catch system time
-	void print_Time();							//print time as ASCII art
+	void print_Time(bool s = 1);				//print time as ASCII art
+	void set_time();
+	Time operator+(const Time& t) const;
 };
 
 

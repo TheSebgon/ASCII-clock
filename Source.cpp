@@ -47,7 +47,7 @@ void Time::update_Time()		//catch system time
 	temp[1] = str[18];
 	seconds = atoi(temp);
 }
-void Time::print_Time()		//print time as ASCII art
+void Time::print_Time(bool s)		//print time as ASCII art
 {
 	using  ASCII_art::ASCII;
 
@@ -61,12 +61,60 @@ void Time::print_Time()		//print time as ASCII art
 		std::cout << ASCII[minutes / 10][i] << "\t";	//minutes
 		std::cout << ASCII[minutes % 10][i] << "\t";
 
-		std::cout << ASCII[10][i] << "\t";			//colon
+		if (s == 1)
+		{
+			std::cout << ASCII[10][i] << "\t";			//colon
 
-		std::cout << ASCII[seconds / 10][i] << "\t";	//seconds
-		std::cout << ASCII[seconds % 10][i] << "\n";
+			std::cout << ASCII[seconds / 10][i] << "\t";	//seconds
+			std::cout << ASCII[seconds % 10][i] << "\n";
+		}
+		else
+			std::cout << std::endl;
 	}
 }
+void Time::set_time()
+{
+	int temp;
+	std::cout << "\nHours: ";
+	std::cin >> temp;
+	hours = temp;
+
+	std::cout << "Minutes: ";
+	std::cin >> temp;
+	minutes = temp;
+}
+/////////////////////////////////////////
+
+Time Time::operator+(const Time& t) const
+{
+	Time sum;
+	sum.minutes = minutes + t.minutes;
+	sum.hours = hours + t.hours + sum.minutes / 60;
+	sum.minutes %= 60;
+	return sum;
+}
+/*
+Time Time::operator-(const Time& t)const
+{
+	Time diff;
+	int tot1, tot2;
+	tot1 = t.minutes + 60 * t.hours;
+	tot2 = minutes + 60 * hours;
+	diff.minutes = (tot1 - tot1) % 60;
+	diff.hours = (tot1 - tot2) / 60;
+	return diff;
+}
+
+Time Time::operator*(double mult)const
+{
+	Time result;
+	long totalminutes = hours * mult * 60 + minutes * mult;
+	result.hours = totalminutes / 60;
+	result.minutes = totalminutes % 60;
+	return result;
+}
+*/
+
 
 //ASCII manip
 ///////////////////////////////////////////////////
