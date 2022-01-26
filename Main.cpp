@@ -2,15 +2,7 @@
 
 int main()
 {	
-	std::string options = "ASCII ART TIME APP...";
-
-	for (int i = 0; i < options.length(); i++)
-	{
-		std::cout << options[i]; Sleep(75);
-	}
-	Sleep(500);
-	system("cls");
-
+	screen_transmision("ASCII ART TIME APP...");
 	show_main_menu();
 	
 }

@@ -75,15 +75,16 @@ void Time::print_Time(bool s)		//print time as ASCII art
 void Time::set_time()
 {
 	int temp;
-	std::cout << "\nHours: ";
+	std::cout << "Hours: ";
 	std::cin >> temp;
 	hours = temp;
-
-	std::cout << "Minutes: ";
+	
+	std::cout << "\nMinutes: ";
 	std::cin >> temp;
 	minutes = temp;
+
+	system("cls");
 }
-/////////////////////////////////////////
 
 Time Time::operator+(const Time& t) const
 {
@@ -93,7 +94,7 @@ Time Time::operator+(const Time& t) const
 	sum.minutes %= 60;
 	return sum;
 }
-/*
+
 Time Time::operator-(const Time& t)const
 {
 	Time diff;
@@ -113,8 +114,6 @@ Time Time::operator*(double mult)const
 	result.minutes = totalminutes % 60;
 	return result;
 }
-*/
-
 
 //ASCII manip
 ///////////////////////////////////////////////////
@@ -134,7 +133,6 @@ void change_ASCII(char sign)
 	using ASCII_art::ASCII;
 	Sleep(500);
 	
-
 	for (int i = 0; i < 11; i++)
 	{
 		for (int j = 0; j < 5; j++)
@@ -155,9 +153,7 @@ void display_mode(int sleep)			//displaying current mode
 	std::cout << std::endl;
 }
 
-//Real time clock
-//////////////////////////
-void show_clock()
+void show_clock()		//Real time clock
 {
 	system("cls");
 	Time x;

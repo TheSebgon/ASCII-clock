@@ -20,6 +20,9 @@ public:
 	void print_Time(bool s = 1);				//print time as ASCII art
 	void set_time();
 	Time operator+(const Time& t) const;
+	Time operator-(const Time& t) const;
+	Time operator*(double mult) const;
+
 };
 
 
@@ -38,3 +41,4 @@ void show_clock();		//Print clock based on system time
 void show_main_menu();		//main menu of app
 void show_ascii_menu();		//ASCII display menu
 void show_calc_menu();		//Time calculator menu
+void screen_transmision(std::string s);

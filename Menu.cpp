@@ -53,6 +53,8 @@ void show_main_menu()
 
 void show_ascii_menu()	//ASCII manip menu
 {
+	screen_transmision("Display options...");
+
 	while (1)
 	{
 		display_mode(200);
@@ -104,19 +106,19 @@ void show_ascii_menu()	//ASCII manip menu
 
 void show_calc_menu()
 {
-	Time t1, t2;
+	Time t1, t2, temp;
+	screen_transmision("Time calculator...");
 
 	while (1)
 	{
-		std::cout << "Time calculator\n\n"
-			<< "BASE TIME: \n\n";
+		std::cout << "TIME: \n\n";
 
 		t1.print_Time(0);
 
 
 		std::cout << "\n\nOptions\n"
 			<< "a) Change base time\n"
-			<< "b) Adding time \t"
+			<< "b) Adding time \n"
 			<< "c) Subtraction time\n"
 			<< "q) Back to main menu\n";
 		char option;
@@ -135,5 +137,38 @@ void show_calc_menu()
 			system("cls");
 			break;
 		}
+
+		switch (option)
+		{
+		case 'a':
+			system("cls");
+			std::cout << std::endl;
+			t1.set_time();
+			break;
+		case 'b':
+			system("cls");
+			std::cout << "\nHow much time do you want to add ?\n";
+			t2.set_time();
+			system("cls");
+			temp = t1 + t2;
+			t1 = temp;
+			break;
+		case 'c':
+
+		default:
+			system("cls");
+			std::cout << "Invalid option, please choose correct one.\n\n";
+			continue;
+		}
 	}
+}
+
+void screen_transmision(std::string s)
+{
+	for (signed int i = 0; i < s.length(); i++)
+	{
+		std::cout << s[i]; Sleep(75);
+	}
+	Sleep(500);
+	system("cls");
 }
