@@ -22,9 +22,17 @@ public:
 
 
 //functions
+//////////////////////////////////////
+
+//ASCII manip
 void replace_sign(std::string& str, char c2);
 void change_ASCII( char sign);	// ASCII sign change
-void show_clock();		
-void show_main_menu();		//main menu of app
-void show_ascii_menu();
 void display_mode(int sleep);	//displaying current mode
+
+//Clock
+void show_clock();		//Print clock based on system time
+
+//Menu
+void show_main_menu();		//main menu of app
+void show_ascii_menu();		//ASCII display menu
+void show_calc_menu();		//Time calculator menu

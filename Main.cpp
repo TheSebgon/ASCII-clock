@@ -11,14 +11,10 @@ int main()
 	Sleep(500);
 	system("cls");
 
-
-
-
 	show_main_menu();
 	
 }
 
-//++ random ascii sign  
 // add another ascii MODE maybe so change display mode also
 //add time calulator (overl op) + menu for calc
 //also maybe consider  new version of change_ASCII() with menu ( ..... how quit withou losing one sign); 
