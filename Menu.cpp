@@ -115,9 +115,9 @@ void show_calc_menu()
 
 
 		std::cout << "\n\nOptions\n"
-			<< "a) Change base time\t"
+			<< "a) Change base time\t\t"
 			<< "b) Use current time\n"
-			<< "c) Add time to the base\t"
+			<< "c) Add time to the base\t\t"
 			<< "d) Subtract time from the base\n"
 			<< "q) Back to main menu\n";
 
