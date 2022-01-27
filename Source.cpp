@@ -28,7 +28,7 @@ Time::Time(int h, int m, int s)
 	seconds = s;
 }
 
-void Time::update_time()		//catch system time
+void Time::update_time()		//Catch system time
 {
 	time_t now = time(NULL);
 	char str[26] = {};
@@ -47,7 +47,7 @@ void Time::update_time()		//catch system time
 	temp[1] = str[18];
 	seconds = atoi(temp);
 }
-void Time::print_time(bool s)		//print time as ASCII art
+void Time::print_time(bool s)		//Print time as ASCII art
 {
 	using  ASCII_art::ASCII;
 
@@ -73,24 +73,10 @@ void Time::print_time(bool s)		//print time as ASCII art
 	}
 }
 
-void Time::reset_time(int h, int m)
+void Time::set_time(int h, int m)
 {
 	hours = h;
 	minutes = m;
-}
-
-void Time::set_time()
-{
-	int temp;
-	std::cout << "Hours: ";
-	std::cin >> temp;
-	hours = temp;
-	
-	std::cout << "\nMinutes: ";
-	std::cin >> temp;
-	minutes = temp;
-
-	system("cls");
 }
 
 Time Time::operator+(const Time& t) const
@@ -138,7 +124,7 @@ void replace_sign(std::string& str, char c2)
 	}
 }
 
-void change_ASCII(char sign)									
+void change_ASCII(char sign)	// ASCII character change					
 {
 	using ASCII_art::ASCII;
 	Sleep(500);
@@ -151,7 +137,7 @@ void change_ASCII(char sign)
 	system("cls");
 }
 
-void display_mode(int sleep)			//displaying current mode
+void display_mode(int sleep)			//Display current mode
 {
 	using ASCII_art::ASCII;
 	std::cout << "\t Current display mode:\n\n";
@@ -162,6 +148,9 @@ void display_mode(int sleep)			//displaying current mode
 	}
 	std::cout << std::endl;
 }
+
+// Other
+//////////////////////
 
 void show_clock()		//Real time clock
 {
@@ -175,4 +164,72 @@ void show_clock()		//Real time clock
 		Sleep(1000);
 		system("cls");
 	}
+}
+
+void get_time(Time& t)		//Ask user about base time
+{
+	int h, m;
+
+	while (true)
+	{
+		std::cout << "\nHours: ";
+		std::cin >> h;
+
+		if ((std::cin) && (h > 0) && (h < 24)) break;
+
+		std::cin.clear();
+		std::cin.ignore(1000, '\n');
+		system("cls");
+		std::cout << "Invalid time input, please input hours in range 0-23\n " << std::flush;
+	}
+	system("cls");
+
+	while (true)
+	{
+		std::cout << "\nMinutes: ";
+		std::cin >> m;
+
+		if ((std::cin) && (m > 0) && (m < 60)) break;
+
+		std::cin.clear();
+		std::cin.ignore(1000, '\n');
+		system("cls");
+		std::cout << "Invalid time input, please input hours in range 0-59\n " << std::flush;
+	}
+	system("cls");
+	t.set_time(h, m);
+}
+
+void get_calc_time(Time& t)		//Ask user about calculation time
+{
+	int h, m;
+
+	while (true)
+	{
+		std::cout << "\nHours: ";
+		std::cin >> h;
+
+		if (std::cin) break;
+
+		std::cin.clear();
+		std::cin.ignore(1000, '\n');
+		system("cls");
+		std::cout << "Invalid time input, use digits \n " << std::flush;
+	}
+	system("cls");
+
+	while (true)
+	{
+		std::cout << "\nMinutes: ";
+		std::cin >> m;
+
+		if (std::cin) break;
+
+		std::cin.clear();
+		std::cin.ignore(1000, '\n');
+		system("cls");
+		std::cout << "Invalid time input, use digits\n " << std::flush;
+	}
+	system("cls");
+	t.set_time(h, m);
 }

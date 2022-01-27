@@ -1,6 +1,6 @@
 #include "Header.h"
 
-//menu
+//Menu
 /////////////////////////////////////////////////////////////
 void show_main_menu()
 {
@@ -24,7 +24,7 @@ void show_main_menu()
 		else
 		{
 			system("cls");
-			std::cout << "Invalid input, please use letter from options below\n\n";
+			std::cout << "Invalid input, please use options below\n\n";
 			continue;
 		}
 
@@ -43,7 +43,7 @@ void show_main_menu()
 			exit(0);
 		default:						//Wrong option
 			system("cls");
-			std::cout << "Invalid option, please choose correct one.\n\n";
+			std::cout << "Invalid option, please select the correct one.\n\n";
 			break;
 		}
 	}
@@ -58,8 +58,8 @@ void show_ascii_menu()	//ASCII manip menu
 		display_mode(200);
 
 		std::cout << "Options\n"
-			<< "a) Choose ASCII sign\t"
-			<< "b) Set random ASCII sign\n"
+			<< "a) Choose ASCII character\t"
+			<< "b) Set random ASCII character\n"
 			<< "q) Back to main menu\n";
 		char option;
 		std::cin >> option;
@@ -69,10 +69,10 @@ void show_ascii_menu()	//ASCII manip menu
 		else
 		{
 			system("cls");
-			std::cout << "Invalid input, please use letter from options below\n\n";
+			std::cout << "Invalid input, please use options below\n\n";
 			continue;
 		}
-		if (option == 'q')		//back to main menu
+		if (option == 'q')		//Back to main menu
 		{
 			system("cls");
 			break;
@@ -80,7 +80,7 @@ void show_ascii_menu()	//ASCII manip menu
 
 		switch (option)
 		{
-		case 'a':					//ask for ASCII sign
+		case 'a':					//Ask for ASCII sign
 			system("cls");
 			display_mode(0);
 			std::cout << "Choose any ASCII sign: ";
@@ -88,15 +88,15 @@ void show_ascii_menu()	//ASCII manip menu
 			std::cin >> sign;
 			change_ASCII(sign);
 			continue;
-		case'b':					//Random sign
+		case'b':					//Random character
 			system("cls");
 			display_mode(0);
 			srand(static_cast<unsigned int>(time(NULL)));
-			change_ASCII(rand() % (127 - (-128) + 1) + (-128));		//rand in ASCII range
+			change_ASCII(rand() % (127 - (-128) + 1) + (-128));		//Rand in ASCII range
 			break;
 		default:
 			system("cls");
-			std::cout << "Invalid option, please choose correct one.\n\n";
+			std::cout << "Invalid option, please select the correct one.\n\n";
 			continue;
 		}
 	}
@@ -109,16 +109,16 @@ void show_calc_menu()
 
 	while (1)
 	{
-		std::cout << "TIME: \n\n";
+		std::cout << "BASE TIME: \n\n";
 
 		t1.print_time(0);
 
 
 		std::cout << "\n\nOptions\n"
-			<< "a) Change base time\n"
+			<< "a) Change base time\t"
 			<< "b) Use current time\n"
-			<< "c) Adding time (Time after x time) \n"
-			<< "d) Subtraction time (Which time was x time ago)\n"
+			<< "c) Add time to the base\t"
+			<< "d) Subtract time from the base\n"
 			<< "q) Back to main menu\n";
 
 		char option;
@@ -129,10 +129,10 @@ void show_calc_menu()
 		else
 		{
 			system("cls");
-			std::cout << "Invalid input, please use letter from options below\n\n";
+			std::cout << "Invalid input, please use options below\n\n";
 			continue;
 		}
-		if (option == 'q')		//back to main menu
+		if (option == 'q')		//Back to main menu
 		{
 			system("cls");
 			break;
@@ -143,7 +143,7 @@ void show_calc_menu()
 		case 'a':
 			system("cls");
 			std::cout << std::endl;
-			t1.set_time();
+			get_time(t1);
 			break;
 		case 'b':
 			system("cls");
@@ -151,8 +151,8 @@ void show_calc_menu()
 			break;
 		case 'c':
 			system("cls");
-			std::cout << "\nHow much time is to pass ?\n";
-			t2.set_time();
+			std::cout << "\nHow much time do you want to add?\n";
+			get_calc_time(t2);
 			system("cls");
 			temp = t1 + t2;
 			t1 = temp;
@@ -160,25 +160,24 @@ void show_calc_menu()
 		case 'd':
 			system("cls");
 			std::cout << "\nHow much time do you want to subtract ?\n";
-			t2.set_time();
+			get_calc_time(t2);
 			system("cls");
 			temp = t1 - t2;	
 			t1 = temp;
 			break;
 		default:
 			system("cls");
-			std::cout << "Invalid option, please choose correct one.\n\n";
+			std::cout << "Invalid option, please select the correct one.\n\n";
 			continue;
 		}
 	}
 }
 
-void screen_transmision(std::string s)
+void screen_transmision(std::string s)		//Transmission for screens
 {
-	for (signed int i = 0; i < s.length(); i++)
-	{
+	for (int i = 0; i < s.length(); i++)
 		std::cout << s[i]; Sleep(75);
-	}
+
 	Sleep(500);
 	system("cls");
 }
